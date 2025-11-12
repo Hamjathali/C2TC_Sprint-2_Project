@@ -10,11 +10,11 @@ body {
 
 .form-container {
   background: #ffffff;
-  padding: 30px 40px;
+  padding: 30px 70px;
   border-radius: 16px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   margin-top: 40px;
-  width: 500px;
+  width: 600px; /* slightly wider for two columns */
   text-align: center;
   transition: transform 0.3s ease;
 }
@@ -29,16 +29,17 @@ h2 {
   font-size: 1.6rem;
 }
 
+/* Two-column layout */
 form {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px 50px; /* row-gap and column-gap */
 }
 
+/* Inputs */
 input {
-  width: 48%;
+  width: 100%; /* take full width of each grid cell */
   padding: 10px;
-  margin-bottom: 15px;
   border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 0.95rem;
@@ -51,19 +52,38 @@ input:focus {
   box-shadow: 0 0 5px rgba(142, 68, 173, 0.3);
 }
 
+/* Button centered under both columns */
 button {
+  grid-column: span 2; /* spans across both columns */
   background: #8e44ad;
   color: white;
   border: none;
   border-radius: 8px;
-  padding: 10px 20px;
+  padding: 12px 20px;
   font-size: 1rem;
   cursor: pointer;
-  width: 100%;
+  width: 50%; /* button width */
+  justify-self: center; /* centers it horizontally */
   transition: all 0.3s ease;
 }
 
 button:hover {
   background: #732d91;
-  transform: scale(1.02);
+  transform: scale(1.03);
+}
+
+/* Responsive for small screens */
+@media (max-width: 600px) {
+  .form-container {
+    width: 90%;
+  }
+
+  form {
+    grid-template-columns: 1fr; /* one column on mobile */
+  }
+
+  button {
+    grid-column: span 1;
+    width: 100%;
+  }
 }
